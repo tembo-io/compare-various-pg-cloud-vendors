@@ -1,9 +1,11 @@
+import fs from 'fs'
 import { renderToChart } from './renderToChart'
 
 const urls = [
   'https://neon-cf.capaj.workers.dev/',
   'https://planetscale-cf.capaj.workers.dev/',
-  'https://turso-cf.capaj.workers.dev/'
+  'https://turso-cf.capaj.workers.dev/',
+  'https://tembo-cf.capaj.workers.dev/',
 ]
 
 let allTimes = [] as number[][]
@@ -25,8 +27,11 @@ async function test() {
 }
 
 await test()
+
 console.log(`✅ done, recorded ${allTimes.length} timings`)
 
+const jsonText = JSON.stringify(allTimes, null, 1);
+fs.promises.writeFile('select-results-2.json', jsonText, 'utf-8')
+
 await renderToChart(allTimes, 'select.png')
-console.log('Chart generated as chart.png')
 export {}
