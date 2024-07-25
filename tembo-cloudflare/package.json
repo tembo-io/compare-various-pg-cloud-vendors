@@ -17,6 +17,9 @@
     "itty-router-extras": "^0.4.5",
     "tsx": "^4.7.1"
   },
+  "overrides": {
+    "pg": "$pg"
+  },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",
     "@types/itty-router-extras": "^0.4.3",
