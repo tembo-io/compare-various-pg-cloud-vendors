@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tsx runTests.ts",
-    "deploy": "cd neon-cloudflare && pnpm run deploy && cd ../turso-cloudflare && pnpm run deploy && cd ../planetscale-cloudflare && pnpm run deploy && cd ../tembo-cloudflare && pnpm run deploy",
+    "deploy": "cd neon-cloudflare && pnpm run deploy && cd ../turso-cloudflare && pnpm run deploy && cd ../planetscale-cloudflare && pnpm run deploy && cd ../tembo-cloudflare && pnpm run deploy"
   },
   "keywords": [],
   "author": "",

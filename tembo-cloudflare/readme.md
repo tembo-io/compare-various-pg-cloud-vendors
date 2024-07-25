@@ -4,7 +4,7 @@
 
 The Tembo Cloudflare worker is configured to use the [postgres.js](https://orm.drizzle.team/docs/get-started-postgresql#postgresjs) driver, bound to a Cloudflare worker API.
 
-Note that this sub-project sets the ssl method to `true` by default, as Tembo only allows SSL connections.
+Note that this sub-project sets the ssl CA certificate by default, as Tembo only allows SSL connections.
 
 ## Set up Wrangler
 
@@ -29,9 +29,16 @@ DATABASE_HOST=my-instance-name.data-1.use1.tembo.io
 DATABASE_PORT=5432
 DATABASE_USERNAME=postgres
 DATABASE_PASSWORD=supersecretpassword
+DATABASE_CERT="
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+"
 ```
 
 Take note of these variables, as they will also be used to configure the CloudFlare workers in the deployment environment as well.
+
+**The `DATABASE_CERT` variable is especially important, as SSL will not work properly without it.** Follow the [instructions](https://tembo.io/docs/product/cloud/security/sslmode) for downloading the CA cert.
 
 ## Installation and Deployment
 
@@ -60,6 +67,7 @@ npx wrangler secret put DATABASE_HOST
 npx wrangler secret put DATABASE_PORT
 npx wrangler secret put DATABASE_USERNAME
 npx wrangler secret put DATABASE_PASSWORD
+npx wrangler secret put DATABASE_CERT
 ```
 
 ## Testing

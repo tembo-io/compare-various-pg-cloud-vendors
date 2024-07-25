@@ -10,8 +10,9 @@
     "generate": "drizzle-kit generate:pg"
   },
   "dependencies": {
+    "pg": ">=8.11.3",
     "postgres": "^3.4.0",
-    "drizzle-orm": "^0.29.3",
+    "drizzle-orm": "^0.32.0",
     "itty-router": "^4.0.27",
     "itty-router-extras": "^0.4.5",
     "tsx": "^4.7.1"

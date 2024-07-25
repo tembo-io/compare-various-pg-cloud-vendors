@@ -20,6 +20,7 @@ interface Env {
   DATABASE_PORT: int
   DATABASE_USERNAME: string
   DATABASE_PASSWORD: string
+  DATABASE_CERT: string
 }
 
 interface Request extends IttyRequest {
@@ -32,12 +33,15 @@ interface Methods {
 }
 
 async function injectDB(request: Request, env: Env) {
+
   const config = {
     host: env.DATABASE_HOST,
     port: parseInt(env.DATABASE_PORT!),
     username: env.DATABASE_USERNAME,
     password: env.DATABASE_PASSWORD,
-    ssl: true,
+    ssl: {
+      ca: env.DATABASE_CERT,
+    },
     fetch: (url: string, init: RequestInit<RequestInitCfProperties>) => {
       delete (init as any)['cache'] // Remove cache header
       return fetch(url, init)
